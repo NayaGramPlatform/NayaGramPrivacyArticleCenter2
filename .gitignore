@@ -6,3 +6,17 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Security & Credentials
+*.jks
+*.keystore
+*.p12
+*.key
+*.pem
+*.cert
+*.der
+*.pfx
+secrets/
+private/
+credentials.json
+google-services.json

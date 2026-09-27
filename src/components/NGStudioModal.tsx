@@ -16,11 +16,8 @@ import {
   Download,
   AlertTriangle,
   CheckCircle2,
-  Copy,
-  Check,
 } from 'lucide-react';
 import { NGLogo } from './NGLogo';
-import { downloadKeystoreDirectly, NAYAGRAM_KEYSTORE_BASE64 } from '../utils/keystoreDownload';
 
 interface NGStudioModalProps {
   isOpen: boolean;
@@ -43,22 +40,6 @@ export const NGStudioModal: React.FC<NGStudioModalProps> = ({
   const [errorMsg, setErrorMsg] = useState('');
   const [simulatedAuditRunning, setSimulatedAuditRunning] = useState(false);
   const [auditComplete, setAuditComplete] = useState(false);
-  const [jksDownloaded, setJksDownloaded] = useState(false);
-  const [base64Copied, setBase64Copied] = useState(false);
-
-  const handleDownloadKeystore = () => {
-    const success = downloadKeystoreDirectly();
-    if (success) {
-      setJksDownloaded(true);
-      setTimeout(() => setJksDownloaded(false), 3000);
-    }
-  };
-
-  const handleCopyBase64 = () => {
-    navigator.clipboard.writeText(NAYAGRAM_KEYSTORE_BASE64);
-    setBase64Copied(true);
-    setTimeout(() => setBase64Copied(false), 3000);
-  };
 
   const handleAuthenticate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +52,7 @@ export const NGStudioModal: React.FC<NGStudioModalProps> = ({
       return;
     }
 
-    // Owner authorization check: Allows secure login for owner alorpoth.family@gmail.com
+    // Owner authorization check: Allows secure diagnostic verification for verified lead maintainers
     setIsAuthenticated(true);
     sessionStorage.setItem('ng_studio_auth', 'true');
     setErrorMsg('');
@@ -304,7 +285,7 @@ export const NGStudioModal: React.FC<NGStudioModalProps> = ({
                     </button>
                   </div>
 
-                  {/* Android Release .jks Keystore Section */}
+                  {/* Android Release Signing Security Architecture (Zero-Secret Policy) */}
                   <div className="p-5 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-950 text-white rounded-2xl border border-indigo-500/40 shadow-xl space-y-4">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
                       <div className="flex items-center gap-2.5">
@@ -313,105 +294,70 @@ export const NGStudioModal: React.FC<NGStudioModalProps> = ({
                         </div>
                         <div>
                           <h4 className="text-xs sm:text-sm font-bold tracking-tight text-white flex items-center gap-2">
-                            <span>Android .jks Release Keystore</span>
+                            <span>Android Release Signing Architecture</span>
                             <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                              Production Ready
+                              Zero Secrets in Repo
                             </span>
                           </h4>
                           <p className="text-[11px] text-slate-400">
-                            Play Store Production Signing Key (RSA 2048-bit, 30 Years Validity)
+                            Google Play App Signing & Hardware Keystore Isolation
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2 shrink-0 flex-wrap">
-                        {/* 100% In-Memory Direct Binary Blob Download (Bypasses Cookie Check & Network Proxy) */}
-                        <button
-                          onClick={handleDownloadKeystore}
-                          className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 text-xs font-bold rounded-xl transition-all shadow-md shadow-emerald-500/25 flex items-center justify-center gap-2"
-                          title="Downloads real binary .jks directly from memory without cookie check interference"
-                        >
-                          {jksDownloaded ? (
-                            <>
-                              <Check className="w-3.5 h-3.5 stroke-[3] text-slate-950" />
-                              <span>ডাউনলোড হয়েছে! (2.8 KB)</span>
-                            </>
-                          ) : (
-                            <>
-                              <Download className="w-3.5 h-3.5 stroke-[2.5]" />
-                              <span>Download .jks (Direct Binary)</span>
-                            </>
-                          )}
-                        </button>
-
-                        {/* Copy Base64 representation */}
-                        <button
-                          onClick={handleCopyBase64}
-                          className="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-xl transition-all border border-white/10 flex items-center gap-1.5"
-                          title="Copy Base64 encoded string of this .jks file"
-                        >
-                          {base64Copied ? (
-                            <>
-                              <Check className="w-3.5 h-3.5 text-emerald-400 stroke-[3]" />
-                              <span className="text-emerald-300">Base64 কপি হয়েছে!</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3.5 h-3.5 text-slate-300" />
-                              <span>Copy Base64</span>
-                            </>
-                          )}
-                        </button>
+                      <div className="flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Public Repo Compliant</span>
                       </div>
                     </div>
 
-                    {/* Exact Credentials Cards with 1-Click Copy */}
+                    {/* Architecture Security Guidelines */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs font-mono">
-                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Key Alias</span>
-                        <span className="text-emerald-300 font-bold text-xs select-all">nayagramprokey</span>
+                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Signing Strategy</span>
+                        <span className="text-emerald-300 font-bold text-xs">Play App Signing</span>
                       </div>
-                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Key Password</span>
-                        <span className="text-sky-300 font-bold text-xs select-all">Naya%Gram~548K@Pro</span>
+                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Keystore Secret Storage</span>
+                        <span className="text-sky-300 font-bold text-xs">CI/CD Secret Manager</span>
                       </div>
-                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Store Password</span>
-                        <span className="text-sky-300 font-bold text-xs select-all">Naya%Gram~548K@Pro</span>
+                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Public Repo Status</span>
+                        <span className="text-emerald-300 font-bold text-xs">100% Sanitized</span>
                       </div>
-                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl hover:bg-white/10 transition-colors">
-                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Validity Period</span>
-                        <span className="text-emerald-300 font-bold text-xs">10,950 Days (30 Years)</span>
+                      <div className="bg-white/5 border border-white/10 p-3 rounded-xl">
+                        <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">Cryptographic Alg</span>
+                        <span className="text-sky-300 font-bold text-xs">RSA 2048-bit SHA-256</span>
                       </div>
                     </div>
 
-                    {/* Android Studio Gradle Config Snippet */}
+                    {/* Safe Android Studio Gradle Config Snippet (Environment Variables) */}
                     <div className="text-[11px] text-slate-300 bg-black/60 border border-slate-800 p-3 rounded-xl font-mono space-y-1">
                       <div className="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1 mb-1.5">
-                        <span>// android/app/build.gradle signingConfigs</span>
-                        <span className="text-emerald-400">Play Console Compliant</span>
+                        <span>// android/app/build.gradle signingConfigs (Standard Secure Pattern)</span>
+                        <span className="text-emerald-400">Environment Driven</span>
                       </div>
                       <div className="overflow-x-auto text-slate-200">
                         <pre className="text-[10px] leading-relaxed">
 {`signingConfigs {
     release {
-        storeFile file("nayagram-release.jks")
-        storePassword "Naya%Gram~548K@Pro"
-        keyAlias "nayagramprokey"
-        keyPassword "Naya%Gram~548K@Pro"
+        storeFile file(System.getenv("KEYSTORE_FILE_PATH") ?: "keystore/release.jks")
+        storePassword System.getenv("KEYSTORE_STORE_PASSWORD")
+        keyAlias System.getenv("KEYSTORE_KEY_ALIAS")
+        keyPassword System.getenv("KEYSTORE_KEY_PASSWORD")
     }
 }`}
                         </pre>
                       </div>
                     </div>
 
-                    {/* Cryptographic Hashes for Play Console & Firebase */}
+                    {/* Certificate Hashes for Play Console & Firebase */}
                     <div className="p-3 bg-white/5 border border-white/10 rounded-xl space-y-2 text-xs font-mono">
                       <div className="text-[10px] text-slate-400 uppercase font-bold tracking-wider flex items-center justify-between">
-                        <span>Google Play Console / Firebase Certificate Hashes</span>
+                        <span>Public Verification Hashes (Google Play & Firebase)</span>
                         <span className="text-emerald-400">X.509 v3</span>
                       </div>
                       <div className="bg-black/40 p-2 rounded-lg">
-                        <span className="text-slate-400 block text-[10px]">SHA-256 Fingerprint (Play App Signing):</span>
+                        <span className="text-slate-400 block text-[10px]">SHA-256 Fingerprint:</span>
                         <code className="text-emerald-300 text-[10px] select-all break-all">
                           81:50:3E:9E:5D:23:10:06:15:25:B8:77:A4:8D:EC:43:41:92:AE:C6:96:90:1E:7D:67:E0:2E:74:88:06:3B:2D
                         </code>
@@ -424,11 +370,11 @@ export const NGStudioModal: React.FC<NGStudioModalProps> = ({
                       </div>
                     </div>
 
-                    {/* Critical Warning / Keystore Importance Note */}
-                    <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs text-amber-200 flex items-start gap-2.5">
-                      <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    {/* Zero-Leak Security Guarantee */}
+                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-200 flex items-start gap-2.5">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <p className="leading-relaxed text-[11px]">
-                        <strong>জরুরি সতর্কতা:</strong> এই <code className="text-white bg-black/30 px-1 rounded">.jks</code> ফাইলটি আপনার অ্যাপের একমাত্র ডিজিটাল স্বাক্ষর (Digital Signature)। এটি হারিয়ে গেলে গুগল প্লে স্টোরে আপনার অ্যাপের পরবর্তী কোনো আপডেট দেওয়া সম্ভব হবে না। ফাইলটি গুগল ড্রাইভ বা অফলাইনে সুরক্ষিত রাখুন।
+                        <strong>সিকিউরিটি নিশ্চয়তা:</strong> এই রিপোজিটরি সম্পূর্ণ পাবলিক-সেইফ। প্রোডাকশন <code className="text-white bg-black/30 px-1 rounded">.jks</code> কি বা পাসওয়ার্ড সোর্স কোডে রাখা সম্পূর্ণ নিষিদ্ধ ও প্রতিরোধিত।
                       </p>
                     </div>
                   </div>

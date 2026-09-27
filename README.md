@@ -74,8 +74,8 @@ https://ais-pre-yesolrlvqlblrralsmt77y-639597377161.asia-southeast1.run.app/
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/NayaGramPlatform/NayaGram-Privacy-Center.git
-cd NayaGram-Privacy-Center
+git clone https://github.com/NayaGramPlatform/PrivacyArticleCenter.git
+cd PrivacyArticleCenter
 
 # Install dependencies
 npm install
