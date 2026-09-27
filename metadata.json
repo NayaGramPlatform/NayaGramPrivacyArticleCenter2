@@ -1,0 +1,6 @@
+{
+  "name": "NayaGram Privacy Center",
+  "description": "Official Privacy Center and Security Architecture for NayaGram Platform. Zero-data architecture powered by Telegram MTProto 2.0.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
